@@ -1,0 +1,164 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agenda PRO</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">⚡</div>
+      <div>
+        <h1>Agenda PRO</h1>
+        <p id="subtitle">Tu día, ordenado.</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn ghost" id="btnToday">Hoy</button>
+      <button class="btn ghost" id="btnWeek">Semana</button>
+      <button class="btn ghost" id="btnMonth">Mes</button>
+      <button class="btn ghost" id="btnList">Lista</button>
+      <button class="btn" id="btnNew">+ Nuevo</button>
+      <button class="btn ghost" id="btnTheme">🌙</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="card">
+        <h2>Top 3 de hoy</h2>
+        <div class="top3" id="top3"></div>
+      </section>
+
+      <section class="card">
+        <div class="row between">
+          <h2>Filtros</h2>
+          <button class="btn tiny ghost" id="btnClearFilters">Limpiar</button>
+        </div>
+
+        <label class="label">Búsqueda</label>
+        <input class="input" id="q" placeholder="Buscar…" />
+
+        <label class="label">Proyecto</label>
+        <select class="select" id="filterProject"></select>
+
+        <label class="label">Prioridad</label>
+        <select class="select" id="filterPriority">
+          <option value="">Todas</option>
+          <option value="Alta">Alta</option>
+          <option value="Media">Media</option>
+          <option value="Baja">Baja</option>
+        </select>
+
+        <label class="label">Tag</label>
+        <select class="select" id="filterTag"></select>
+      </section>
+
+      <section class="card">
+        <div class="row between">
+          <h2>Hábitos</h2>
+          <button class="btn tiny" id="btnNewHabit">+ Agregar</button>
+        </div>
+        <div id="habits"></div>
+      </section>
+
+      <section class="card">
+        <h2>Datos</h2>
+        <div class="row gap">
+          <button class="btn small ghost" id="btnExport">Export</button>
+          <label class="btn small ghost file">
+            Import
+            <input type="file" id="importFile" accept="application/json" />
+          </label>
+        </div>
+        <p class="muted">Se guarda en tu navegador (localStorage).</p>
+      </section>
+    </aside>
+
+    <section class="content">
+      <div class="content-header">
+        <div class="row gap">
+          <button class="btn ghost" id="btnPrev">◀</button>
+          <button class="btn ghost" id="btnNext">▶</button>
+          <button class="btn ghost" id="btnNow">Hoy</button>
+        </div>
+        <h2 id="viewTitle">Hoy</h2>
+        <div class="row gap">
+          <button class="btn ghost" id="btnPlanner">Auto-planificar</button>
+        </div>
+      </div>
+
+      <div id="view" class="view"></div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div class="row between">
+        <h2 id="modalTitle">Nueva tarea</h2>
+        <button class="btn ghost" id="btnClose">✕</button>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label class="label">Título</label>
+          <input class="input" id="tTitle" placeholder="Ej: Estudiar Física" />
+        </div>
+        <div>
+          <label class="label">Proyecto</label>
+          <select class="select" id="tProject"></select>
+        </div>
+
+        <div>
+          <label class="label">Fecha</label>
+          <input type="date" class="input" id="tDate" />
+        </div>
+        <div>
+          <label class="label">Hora (opcional)</label>
+          <input type="time" class="input" id="tTime" />
+        </div>
+
+        <div>
+          <label class="label">Duración (min)</label>
+          <input type="number" class="input" id="tDuration" min="5" step="5" value="30" />
+        </div>
+        <div>
+          <label class="label">Prioridad</label>
+          <select class="select" id="tPriority">
+            <option>Media</option>
+            <option>Alta</option>
+            <option>Baja</option>
+          </select>
+        </div>
+
+        <div class="span2">
+          <label class="label">Tags (separados por coma)</label>
+          <input class="input" id="tTags" placeholder="facu, gym, laburo" />
+        </div>
+
+        <div class="span2">
+          <label class="label">Notas</label>
+          <textarea class="textarea" id="tNotes" placeholder="Detalles…"></textarea>
+        </div>
+      </div>
+
+      <div class="row between mt">
+        <div class="row gap">
+          <button class="btn danger ghost" id="btnDelete">Eliminar</button>
+        </div>
+        <div class="row gap">
+          <button class="btn ghost" id="btnCancel">Cancelar</button>
+          <button class="btn" id="btnSave">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
